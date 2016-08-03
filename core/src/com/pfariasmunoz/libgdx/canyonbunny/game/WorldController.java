@@ -7,11 +7,12 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.InputAdapter;
 
 /**
  * Created by Pablo Farias on 03-08-16.
  */
-public class WorldController {
+public class WorldController extends InputAdapter {
     private static final String TAG = WorldController.class.getName();
 
     public Sprite[] testSprites;
@@ -22,12 +23,28 @@ public class WorldController {
     }
 
     private void init() {
+        Gdx.input.setInputProcessor(this);
         initTestObjects();
     }
 
     public void update(float deltaTime) {
         handleDebugInput(deltaTime);
         updateTestObjects(deltaTime);
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        // Reset game world
+        if(keycode == Keys.R) {
+            init();
+            Gdx.app.debug(TAG, "Game world resetted");
+        }
+        // Select next sprite
+        else if(keycode == Keys.SPACE) {
+            selectedSprite = (selectedSprite + 1) % testSprites.length;
+            Gdx.app.debug(TAG, "Sprite #" + selectedSprite + " selected");
+        }
+        return false;
     }
 
     private void initTestObjects() {
