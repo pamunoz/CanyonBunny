@@ -1,7 +1,6 @@
 package com.pfariasmunoz.libgdx.canyonbunny.game;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
 import com.pfariasmunoz.libgdx.canyonbunny.util.Constants;
@@ -57,5 +56,13 @@ public class WorldRenderer implements Disposable {
         batch.begin();
         worldController.level.render(batch);
         batch.end();
+    }
+
+    private void renderGuiScore(SpriteBatch batch) {
+        float x = -15;
+        float y = -15;
+
+        batch.draw(Assets.instance.goldCoin.goldCoin, x, y, 50, 50, 100, 100, 0.35f, -0.35f, 0);
+        Assets.instance.fonts.defaultBig.draw(batch, "" + worldController.score, x + 75, y + 37);
     }
 }
