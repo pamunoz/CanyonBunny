@@ -131,9 +131,22 @@ public class WorldController extends InputAdapter {
         if(Gdx.input.isKeyPressed(Keys.UP)) moveCamera(0, camMoveSpeed);
         if(Gdx.input.isKeyPressed(Keys.DOWN)) moveCamera(0, -camMoveSpeed);
         if(Gdx.input.isKeyPressed(Keys.BACKSPACE)) cameraHelper.setPosition(0, 0);
+        // Camera Controls (zoom)
+        float camZoomSpeed = 1 * deltatime;
+        float camZoomSpeedAccelerationFactor = 5;
+        if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)) camZoomSpeed *= camZoomSpeedAccelerationFactor;
+        if(Gdx.input.isKeyPressed(Keys.COMMA)) cameraHelper.addZoom(camZoomSpeed);
+        if(Gdx.input.isKeyPressed(Keys.PERIOD)) cameraHelper.addZoom(-camZoomSpeed);
+        if(Gdx.input.isKeyPressed(Keys.SLASH)) cameraHelper.setZoom(1);
     }
 
     private void moveSelectedSprite(float x, float y) {
         testSprites[selectedSprite].translate(x, y);
+    }
+
+    private void moveCamera(float x, float y) {
+        x += cameraHelper.getPosition().x;
+        y += cameraHelper.getPosition().y;
+        cameraHelper.setPosition(x, y);
     }
 }
