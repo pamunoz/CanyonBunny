@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.StreamUtils;
 import com.pfariasmunoz.libgdx.canyonbunny.util.Constants;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 /**
  * Created by Pablo Farias on 04-08-16.
  */
@@ -40,7 +41,7 @@ public class Assets implements Disposable, AssetErrorListener {
         assetManager.dispose();
     }
 
-    @Override
+
     public void error(String filename, Class type, Throwable throwable ) {
         Gdx.app.error(TAG, "Couldn't load asset '" + filename + "'", (Exception) throwable);
     }
@@ -48,5 +49,57 @@ public class Assets implements Disposable, AssetErrorListener {
     @Override
     public void error(AssetDescriptor asset, Throwable throwable) {
         Gdx.app.error(TAG, "Couldn't load asset '" + asset.fileName + "'", (Exception) throwable);
+    }
+
+    public class AssetBunny {
+        public final AtlasRegion head;
+
+        public AssetBunny(TextureAtlas atlas) {
+            head = atlas.findRegion("bunny_head");
+        }
+    }
+
+    public class AssetRock {
+        public final AtlasRegion edge;
+        public final AtlasRegion middle;
+
+        public AssetRock(TextureAtlas atlas) {
+            edge = atlas.findRegion("rock_edge");
+            middle = atlas.findRegion("rock_middle");
+        }
+    }
+
+    public class AssetGoldCoin {
+        public final AtlasRegion goldCoin;
+
+        public AssetGoldCoin(TextureAtlas atlas) {
+            goldCoin = atlas.findRegion("item_gold_coin");
+        }
+    }
+
+    public class AssetFeather {
+        public final AtlasRegion feather;
+
+        public AssetFeather(TextureAtlas atlas) {
+            feather = atlas.findRegion("item_feather");
+        }
+    }
+
+    public class AssetLevelDecoration {
+        public final AtlasRegion cloud01;
+        public final AtlasRegion cloud02;
+        public final AtlasRegion cloud03;
+        public final AtlasRegion mountainLeft;
+        public final AtlasRegion mountainRight;
+        public final AtlasRegion waterOverlay;
+
+        public AssetLevelDecoration(TextureAtlas atlas) {
+            cloud01 = atlas.findRegion("cloud01");
+            cloud02 = atlas.findRegion("cloud02");
+            cloud03 = atlas.findRegion("cloud03");
+            mountainLeft = atlas.findRegion("mountain_left");
+            mountainRight = atlas.findRegion("mountain_right");
+            waterOverlay = atlas.findRegion("water_overlay");
+        }
     }
 }
