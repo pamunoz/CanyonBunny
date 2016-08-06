@@ -144,12 +144,14 @@ public class Level {
     public void render(SpriteBatch batch) {
         // Draw Mountains
         mountains.render(batch);
-
         // Draw Rocks
-        for(Rock rock : rocks) {
-            rock.render(batch);
-        }
-
+        for(Rock rock : rocks) rock.render(batch);
+        // Draw Gold Coins
+        for(GoldCoin goldCoin : goldCoins) goldCoin.render(batch);
+        // Draw Feathers
+        for(Feather feather : feathers) feather.render(batch);
+        // Draw Player Character
+        bunnyHead.render(batch);
         // Draw Water Overlay
         waterOverlay.render(batch);
         // Draw Clouds
