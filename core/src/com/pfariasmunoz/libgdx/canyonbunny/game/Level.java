@@ -157,4 +157,12 @@ public class Level {
         // Draw Clouds
         clouds.render(batch);
     }
+
+    public void update(float deltaTime) {
+        bunnyHead.update(deltaTime);
+        for(Rock rock : rocks) rock.update(deltaTime);
+        for(GoldCoin goldCoin : goldCoins) goldCoin.update(deltaTime);
+        for(Feather feather : feathers) feather.update(deltaTime);
+        clouds.update(deltaTime);
+    }
 }
