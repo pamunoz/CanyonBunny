@@ -6,37 +6,41 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.pfariasmunoz.libgdx.canyonbunny.game.Assets;
-/**
- * Created by Pablo Farias on 04-08-16.
- */
+
 public class Clouds extends AbstractGameObject {
+
     private float length;
+
     private Array<TextureRegion> regClouds;
-    private Array<Cloud>  clouds;
+    private Array<Cloud> clouds;
 
     private class Cloud extends AbstractGameObject {
         private TextureRegion regCloud;
 
-        public Cloud() {}
+        public Cloud () {
+        }
 
-        public void setRegion(TextureRegion region) {
+        public void setRegion (TextureRegion region) {
             regCloud = region;
         }
 
         @Override
-        public void render(SpriteBatch batch) {
+        public void render (SpriteBatch batch) {
             TextureRegion reg = regCloud;
-            batch.draw(reg.getTexture(), position.x + origin.x, position.y + origin.y, origin.x, origin.y, dimension.x, dimension.y, scale.x, scale.y, rotation, reg.getRegionX(), reg.getRegionY(), reg.getRegionWidth(), reg.getRegionHeight(), false, false);
+            batch.draw(reg.getTexture(), position.x + origin.x, position.y + origin.y, origin.x, origin.y, dimension.x, dimension.y,
+                    scale.x, scale.y, rotation, reg.getRegionX(), reg.getRegionY(), reg.getRegionWidth(), reg.getRegionHeight(), false,
+                    false);
         }
     }
 
-    public Clouds(float length) {
+    public Clouds (float length) {
         this.length = length;
         init();
     }
 
-    private void init() {
+    private void init () {
         dimension.set(3.0f, 1.5f);
+
         regClouds = new Array<TextureRegion>();
         regClouds.add(Assets.instance.levelDecoration.cloud01);
         regClouds.add(Assets.instance.levelDecoration.cloud02);
@@ -45,7 +49,6 @@ public class Clouds extends AbstractGameObject {
         int distFac = 5;
         int numClouds = (int)(length / distFac);
         clouds = new Array<Cloud>(2 * numClouds);
-
         for (int i = 0; i < numClouds; i++) {
             Cloud cloud = spawnCloud();
             cloud.position.x = i * distFac;
@@ -53,7 +56,7 @@ public class Clouds extends AbstractGameObject {
         }
     }
 
-    private Cloud spawnCloud() {
+    private Cloud spawnCloud () {
         Cloud cloud = new Cloud();
         cloud.dimension.set(dimension);
         // select random cloud image
@@ -68,9 +71,9 @@ public class Clouds extends AbstractGameObject {
     }
 
     @Override
-    public void render(SpriteBatch batch) {
-        for(Cloud cloud : clouds) {
+    public void render (SpriteBatch batch) {
+        for (Cloud cloud : clouds)
             cloud.render(batch);
-        }
     }
+
 }
