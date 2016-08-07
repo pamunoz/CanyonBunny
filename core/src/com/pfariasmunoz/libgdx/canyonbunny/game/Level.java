@@ -168,6 +168,8 @@ public class Level {
     }
 
     public void render (SpriteBatch batch) {
+        // Draw Clouds
+        clouds.render(batch);
         // Draw Mountains
         mountains.render(batch);
         // Draw Rocks
@@ -183,8 +185,7 @@ public class Level {
         bunnyHead.render(batch);
         // Draw Water Overlay
         waterOverlay.render(batch);
-        // Draw Clouds
-        clouds.render(batch);
+
     }
 
 }

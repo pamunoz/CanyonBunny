@@ -124,14 +124,16 @@ public class WorldRenderer implements Disposable {
     }
 
     private void renderGuiGameOverMessage (SpriteBatch batch) {
-        float x = cameraGUI.viewportWidth / 2;
-        float y = cameraGUI.viewportHeight / 2;
+        float x = (cameraGUI.viewportWidth / 2) - (layout.width / 2);
+        float y = cameraGUI.viewportHeight / 2 - layout.height;
         if (worldController.isGameOver()) {
             BitmapFont fontGameOver = Assets.instance.fonts.defaultBig;
             Color color = new Color(1, 0.75f, 0.25f, 1);
             String text = "GAME OVER";
-            layout.setText(fontGameOver,text, color,Gdx.graphics.getWidth() / 2, Align.center,true);
+            layout.setText(fontGameOver,text);
             fontGameOver.draw(batch,layout,x,y);//Center Text
+            fontGameOver.setColor(color);
+           // , color,Gdx.graphics.getWidth() / 2, Align.center,true
         }
     }
 
