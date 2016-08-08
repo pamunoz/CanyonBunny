@@ -8,4 +8,6 @@
 	<entry-point class='com.pfariasmunoz.libgdx.canyonbunny.client.HtmlLauncher' />
 	
 	<set-configuration-property name="gdx.assetpath" value="../android/assets" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.badlogic.gdx.scenes.scene2d.ui" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.badlogic.gdx.utils" />
 </module>
