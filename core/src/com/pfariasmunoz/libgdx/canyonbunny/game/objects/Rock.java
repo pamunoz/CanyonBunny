@@ -1,10 +1,18 @@
 package com.pfariasmunoz.libgdx.canyonbunny.game.objects;
 
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.pfariasmunoz.libgdx.canyonbunny.game.Assets;
 
 public class Rock extends AbstractGameObject {
+
+    private final float FLOAT_CYCLE_TIME = 2.0f;
+    private final float FLOAT_AMPLITUDE = 0.25f;
+    private float floatCycleTimeLeft;
+    private boolean floatingDownwards;
+    private Vector2 floatTargetPosition;
 
     private TextureRegion regEdge;
     private TextureRegion regMiddle;
@@ -23,6 +31,10 @@ public class Rock extends AbstractGameObject {
 
         // Start length of this rock
         setLength(1);
+
+        floatingDownwards = false;
+        floatCycleTimeLeft = MathUtils.random(0, FLOAT_CYCLE_TIME / 2);
+        floatTargetPosition = null;
     }
 
     public void setLength (int length) {
@@ -66,4 +78,17 @@ public class Rock extends AbstractGameObject {
                 reg.getRegionHeight(), true, false);
     }
 
+    @Override
+    public void update(float deltaTime) {
+        super.update(deltaTime);
+
+        floatCycleTimeLeft -= deltaTime;
+        if(floatTargetPosition == null) floatTargetPosition = new Vector2(position);
+        if(floatCycleTimeLeft <= 0) {
+            floatCycleTimeLeft = FLOAT_CYCLE_TIME;
+            floatingDownwards = !floatingDownwards;
+            floatTargetPosition.y += FLOAT_AMPLITUDE * (floatingDownwards ? -1 : 1);
+        }
+        position.lerp(floatTargetPosition, deltaTime);
+    }
 }
