@@ -3,6 +3,7 @@ package com.pfariasmunoz.libgdx.canyonbunny.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+
 import com.pfariasmunoz.libgdx.canyonbunny.game.WorldController;
 import com.pfariasmunoz.libgdx.canyonbunny.game.WorldRenderer;
 /**
@@ -38,6 +39,7 @@ public class GameScreen extends AbstractGameScreen {
 
     @Override
     public void resize(int width, int height) {
+
         worldRenderer.resize(width, height);
     }
 
@@ -65,4 +67,6 @@ public class GameScreen extends AbstractGameScreen {
         // Only called on Android!
         paused = false;
     }
+
+
 }
