@@ -26,6 +26,8 @@ import com.pfariasmunoz.libgdx.canyonbunny.util.Constants;
 import com.pfariasmunoz.libgdx.canyonbunny.util.CharacterSkin;
 import com.pfariasmunoz.libgdx.canyonbunny.util.CharacterSkin;
 import com.pfariasmunoz.libgdx.canyonbunny.util.GamePreferences;
+import com.pfariasmunoz.libgdx.canyonbunny.screens.transitions.ScreenTransition;
+import com.pfariasmunoz.libgdx.canyonbunny.screens.transitions.ScreenTransitionFade;
 
 /**
  * Created by Pablo Farias on 07-08-16.
@@ -320,7 +322,8 @@ public class MenuScreen extends AbstractGameScreen {
     }
 
     private void onPlayClicked () {
-        game.setScreen(new GameScreen(game));
+        ScreenTransition transition = ScreenTransitionFade.init(0.75f);
+        game.setScreen(new GameScreen(game), transition);
     }
 
     private void onOptionClicked () {
