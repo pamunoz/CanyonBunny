@@ -15,6 +15,9 @@ import com.pfariasmunoz.libgdx.canyonbunny.util.CameraHelper;
 import com.pfariasmunoz.libgdx.canyonbunny.util.Constants;
 import com.pfariasmunoz.libgdx.canyonbunny.screens.MenuScreen;
 import com.pfariasmunoz.libgdx.canyonbunny.screens.DirectedGame;
+import com.badlogic.gdx.math.Interpolation;
+import com.pfariasmunoz.libgdx.canyonbunny.screens.transitions.ScreenTransition;
+import com.pfariasmunoz.libgdx.canyonbunny.screens.transitions.ScreenTransitionSlide;
 
 public class WorldController extends InputAdapter {
 
@@ -229,6 +232,7 @@ public class WorldController extends InputAdapter {
 
     private void backToMenu () {
         // switch to menu screen
-        game.setScreen(new MenuScreen(game));
+        ScreenTransition transition = ScreenTransitionSlide.init(0.7f, ScreenTransitionSlide.DOWN, false, Interpolation.bounceOut);
+        game.setScreen(new MenuScreen(game), transition);
     }
 }
