@@ -14,6 +14,7 @@ import com.pfariasmunoz.libgdx.canyonbunny.game.objects.Rock;
 import com.pfariasmunoz.libgdx.canyonbunny.util.CameraHelper;
 import com.pfariasmunoz.libgdx.canyonbunny.util.Constants;
 import com.pfariasmunoz.libgdx.canyonbunny.screens.MenuScreen;
+import com.pfariasmunoz.libgdx.canyonbunny.screens.DirectedGame;
 
 public class WorldController extends InputAdapter {
 
@@ -32,15 +33,14 @@ public class WorldController extends InputAdapter {
     private Rectangle r2 = new Rectangle();
 
     private float timeLeftGameOverDelay;
-    private Game game;
+    private DirectedGame game;
 
-    public WorldController (Game game) {
+    public WorldController (DirectedGame game) {
         this.game = game;
         init();
     }
 
     private void init () {
-        Gdx.input.setInputProcessor(this);
         cameraHelper = new CameraHelper();
         lives = Constants.LIVES_START;
         livesVisual = lives;
