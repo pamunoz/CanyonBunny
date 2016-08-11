@@ -8,6 +8,8 @@ import com.pfariasmunoz.libgdx.canyonbunny.util.CharacterSkin;
 import com.pfariasmunoz.libgdx.canyonbunny.util.GamePreferences;
 import com.pfariasmunoz.libgdx.canyonbunny.game.Assets;
 import com.pfariasmunoz.libgdx.canyonbunny.util.Constants;
+import com.badlogic.gdx.math.MathUtils;
+import com.pfariasmunoz.libgdx.canyonbunny.util.AudioManager;
 
 public class BunnyHead extends AbstractGameObject {
 
@@ -170,6 +172,7 @@ public class BunnyHead extends AbstractGameObject {
         switch (jumpState) {
             case GROUNDED: // Character is standing on a platform
                 if (jumpKeyPressed) {
+                    AudioManager.instance.play(Assets.instance.sounds.jump);
                     // Start counting jump time from the beginning
                     timeJumping = 0;
                     jumpState = JUMP_STATE.JUMP_RISING;
@@ -183,6 +186,7 @@ public class BunnyHead extends AbstractGameObject {
             case FALLING:// Falling down
             case JUMP_FALLING: // Falling down after jump
                 if (jumpKeyPressed && hasFeatherPowerup) {
+                    AudioManager.instance.play(Assets.instance.sounds.jumpWithFeather, 1, MathUtils.random(1.0f, 1.1f));
                     timeJumping = JUMP_TIME_OFFSET_FLYING;
                     jumpState = JUMP_STATE.JUMP_RISING;
                 }
