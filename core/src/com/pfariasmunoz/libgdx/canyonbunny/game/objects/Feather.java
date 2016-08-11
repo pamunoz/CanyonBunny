@@ -6,37 +6,37 @@ import com.pfariasmunoz.libgdx.canyonbunny.game.Assets;
 
 public class Feather extends AbstractGameObject {
 
-    private TextureRegion regFeather;
+	private TextureRegion regFeather;
 
-    public boolean collected;
+	public boolean collected;
 
-    public Feather () {
-        init();
-    }
+	public Feather () {
+		init();
+	}
 
-    private void init () {
-        dimension.set(0.5f, 0.5f);
+	private void init () {
+		dimension.set(0.5f, 0.5f);
 
-        regFeather = Assets.instance.feather.feather;
+		regFeather = Assets.instance.feather.feather;
 
-        // Set bounding box for collision detection
-        bounds.set(0, 0, dimension.x, dimension.y);
+		// Set bounding box for collision detection
+		bounds.set(0, 0, dimension.x, dimension.y);
 
-        collected = false;
-    }
+		collected = false;
+	}
 
-    public void render (SpriteBatch batch) {
-        if (collected) return;
+	public void render (SpriteBatch batch) {
+		if (collected) return;
 
-        TextureRegion reg = null;
+		TextureRegion reg = null;
 
-        reg = regFeather;
-        batch.draw(reg.getTexture(), position.x, position.y, origin.x, origin.y, dimension.x, dimension.y, scale.x, scale.y,
-                rotation, reg.getRegionX(), reg.getRegionY(), reg.getRegionWidth(), reg.getRegionHeight(), false, false);
-    }
+		reg = regFeather;
+		batch.draw(reg.getTexture(), position.x, position.y, origin.x, origin.y, dimension.x, dimension.y, scale.x, scale.y,
+			rotation, reg.getRegionX(), reg.getRegionY(), reg.getRegionWidth(), reg.getRegionHeight(), false, false);
+	}
 
-    public int getScore () {
-        return 250;
-    }
+	public int getScore () {
+		return 250;
+	}
 
 }
